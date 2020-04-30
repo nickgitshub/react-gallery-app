@@ -53,6 +53,8 @@ class App extends Component{
           loading: false
         })
       })
+    
+     console.log("Search", this.state.title, this.state.activeImages)
   }
 
     componentDidMount(){
@@ -81,22 +83,13 @@ class App extends Component{
         <Search
               onSearch={this.performSearch.bind(this)}
         /> 
-        
-        <BrowserRouter>
-          <Redirect to="/cats" />
-          <Nav 
-            setProperties={this.setProperties.bind(this)}
-            catImages={this.state.catImages}
-            dogImages={this.state.dogImages}
-            computerImages={this.state.computerImages}
-          /> 
-        </BrowserRouter>
-
-        <PhotoContainer 
-          activeImages={this.state.activeImages}
-          title={this.state.title}
-          loading={this.state.loading}
-        />
+               
+        <Nav 
+          catImages={this.state.catImages}
+          dogImages={this.state.dogImages}
+          computerImages={this.state.computerImages}
+          passedState={this.state}
+        /> 
         
       </div>
     )

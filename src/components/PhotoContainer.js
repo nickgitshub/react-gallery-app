@@ -3,11 +3,26 @@ import Photo from './Photo.js'
 import NotFound from './NotFound.js'
 
 class PhotoContainer extends Component{
+
+	setProperties(stateToChange, query, dataset){
+	    stateToChange.setState({
+	      title: `${query} Results`,
+	      loading: false,
+	      activeImages: dataset
+    	})
+  	}
+
+
 	render(){
+		console.log("Photo", this.props)
+		this.props.passedState.title = this.props.pathPassed;
+		this.props.passedState.loading= false;
+		this.props.passedState.activeImages = this.props.imagesToSet;
+
 		let imagesToRender;
 
-	    if(this.props.activeImages.length>0){
-	      imagesToRender = this.props.activeImages.map(image=> 
+	    if(this.props.passedState.activeImages.length>0){
+	      imagesToRender = this.props.passedState.activeImages.map(image=> 
 	        <Photo 
 	          key={image.id}
 	          imageURL={`https://farm${image.farm}.staticflickr.com/${image.server}/${image.id}_${image.secret}.jpg`}
@@ -20,10 +35,10 @@ class PhotoContainer extends Component{
 		return(
 			<div className="photo-container">
 		    { (this.props.loading)
-		        ?<h2>{this.props.title}</h2>
+		        ?<h2>{this.props.passedState.title}</h2>
 		        :
 		        <Fragment>              
-		          <h2>{this.props.title}</h2>
+		          <h2>{this.props.passedState.title}</h2>
 		          <ul>
 		            { imagesToRender }
 		          </ul>
