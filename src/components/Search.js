@@ -23,13 +23,13 @@ class Search extends Component{
 
 	render(){
 
+		//everytime there is a change in the search bar, it redirects the page to the search route
 		let optionalRoute; 
 		if(this.state.routeSwitch){
 			optionalRoute = 
 				<BrowserRouter>
 					<Redirect to="/search" />
-				</BrowserRouter>
-			
+				</BrowserRouter>	
 		}
 
 		this.state.routeSwitch = false; 

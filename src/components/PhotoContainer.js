@@ -4,18 +4,17 @@ import NotFound from './NotFound.js'
 
 class PhotoContainer extends Component{
 
-	setProperties(stateToChange, query, dataset){
+	setProperties(stateToChange, title, dataset){
 	    stateToChange.setState({
-	      title: `${query} Results`,
+	      title: `${title} Results`,
 	      loading: false,
 	      activeImages: dataset
     	})
   	}
 
-
 	render(){
 		console.log("Photo", this.props)
-		this.props.passedState.title = this.props.pathPassed;
+		this.props.passedState.title = this.props.titlePassed;
 		this.props.passedState.loading= false;
 		this.props.passedState.activeImages = this.props.imagesToSet;
 
@@ -47,7 +46,6 @@ class PhotoContainer extends Component{
 		   </div>
 
 		)
-	
 	}
 }
 

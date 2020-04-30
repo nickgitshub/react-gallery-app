@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import apiKey from './config.js'
 import axios from 'axios'
 import PhotoContainer from './components/PhotoContainer.js'
 import Search from './components/Search.js'
 import Nav from './components/Nav.js'
+import NotFound from './/components/NotFound'
 
 
 
@@ -38,7 +39,6 @@ class App extends Component{
     })
   }
 
-
   performSearch(query){
     this.setState({
       title: "Loading...",
@@ -57,12 +57,12 @@ class App extends Component{
      console.log("Search", this.state.title, this.state.activeImages)
   }
 
+    //creating the image arrays in state when the page loads
     componentDidMount(){
-    //creating data of all the images to set up 
+    
     const catsData = this.performFetch("cats")
       .then(data=> {
         this.setState({catImages: this.state.catImages.concat(data)})
-        this.setProperties("cats", this.state.catImages)
     });
     const dogsData = this.performFetch("dogs")
       .then(data=> {
@@ -83,13 +83,48 @@ class App extends Component{
         <Search
               onSearch={this.performSearch.bind(this)}
         /> 
+
+         <Nav 
+            catImages={this.state.catImages}
+            dogImages={this.state.dogImages}
+            computerImages={this.state.computerImages}
+            passedState={this.state}
+         /> 
                
-        <Nav 
-          catImages={this.state.catImages}
-          dogImages={this.state.dogImages}
-          computerImages={this.state.computerImages}
-          passedState={this.state}
-        /> 
+        <BrowserRouter>
+          <Switch>
+            <Redirect exact from="/" to="/cats" />
+            <Route exact path="/cats">
+              <PhotoContainer
+                titlePassed={"Cats Results"}
+                imagesToSet={this.state.catImages}
+                passedState={this.state}
+              />
+            </Route>
+            <Route exact path="/dogs">
+              <PhotoContainer
+                titlePassed={"Dogs Results"}
+                imagesToSet={this.state.dogImages}
+                passedState={this.state}
+              />
+            </Route>
+            <Route exact path="/computers">
+              <PhotoContainer
+                titlePassed={"Computers Results"}
+                imagesToSet={this.state.computerImages}
+                passedState={this.state}
+              />
+            </Route>
+            <Route exact path="/search">
+              <PhotoContainer
+                titlePassed={this.state.title}
+                imagesToSet={this.state.activeImages}
+                passedState={this.state}
+              />
+            </Route>
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
         
       </div>
     )
