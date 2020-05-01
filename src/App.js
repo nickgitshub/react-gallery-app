@@ -66,15 +66,15 @@ class App extends Component{
     //creating the image arrays in state when the page loads
     componentDidMount(){
     
-      const catsData = this.performFetch("cats")
+    this.performFetch("cats")
         .then(data=> {
           this.setState({catImages: this.state.catImages.concat(data)})
       });
-      const dogsData = this.performFetch("dogs")
+    this.performFetch("dogs")
         .then(data=> {
           this.setState({dogImages: this.state.dogImages.concat(data)})
       });
-      const computersData = this.performFetch("computers")
+    this.performFetch("computers")
         .then(data=> {
           this.setState({computerImages: this.state.computerImages.concat(data)})
       });
