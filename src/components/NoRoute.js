@@ -1,10 +1,9 @@
 import React from 'react';
 
 const NoRoute = (props) => {
-		console.log(props)
 
+		//change the title on the page via a prop reference to state on App.js
 		props.passedState.title = "Page Doesn't Exist"
-		console.log(props.passedState.title==="Welcome")
 
 		return(
 			<div>

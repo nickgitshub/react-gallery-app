@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import { BrowserRouter, Redirect, Route, Switch, NavLink } from 'react-router-dom'
+import React, { Component } from 'react';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import apiKey from './config.js'
 import axios from 'axios'
 import PhotoContainer from './components/PhotoContainer.js'
@@ -61,7 +61,6 @@ class App extends Component{
         
       })
     
-     console.log("Search", this.state.title, this.state.activeImages)
   }
 
     //creating the image arrays in state when the page loads

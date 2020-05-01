@@ -1,8 +1,10 @@
 import React from 'react';
 
 const NotFound = (props) => {
-		console.log(props)
 
+
+		//will return a message depending on whether the page has just been loaded or if its an invalid search
+		//the title referenced on this element is controlled from App.js
 		return(
 			<li className="not-found">
 		        {(props.passedState.title==="Welcome")

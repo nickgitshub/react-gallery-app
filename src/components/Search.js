@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Redirect } from 'react-router-dom'
 
 class Search extends Component{
 
@@ -7,12 +6,14 @@ class Search extends Component{
 		searchText: ''
 	}
 
+	//the state of the search is registered with every keystroke
 	onSearchChange = e => {
 		this.setState({searchText: e.target.value})
 	}
 
 	handleSubmit = e => {
 		e.preventDefault()
+		//a search function from App.js is called when the search button is pressed
 		this.props.onSearch(this.state.searchText); 
 		e.target.reset()
 	}

@@ -4,22 +4,17 @@ import NotFound from './NotFound.js'
 
 class PhotoContainer extends Component{
 
-	setProperties(stateToChange, title, dataset){
-	    stateToChange.setState({
-	      title: `${title} Results`,
-	      loading: false,
-	      activeImages: dataset
-    	})
-  	}
-
 	render(){
-		console.log("Photo", this.props)
+
+		//sets title, images, and load state from App.js Route
 		this.props.passedState.title = this.props.titlePassed;
 		this.props.passedState.loading= false;
 		this.props.passedState.activeImages = this.props.imagesToSet;
 
-		let imagesToRender;
 
+		//create Photo components for all of the photos stored in the activeImages array
+		//if activeImages is empty, it redirects to the NotFound component
+		let imagesToRender;
 	    if(this.props.passedState.activeImages.length>0){
 	      imagesToRender = this.props.passedState.activeImages.map(image=> 
 	        <Photo 
