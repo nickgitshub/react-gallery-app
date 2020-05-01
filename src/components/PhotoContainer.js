@@ -28,7 +28,9 @@ class PhotoContainer extends Component{
 	        />
 	      )
 	    }else{
-	      imagesToRender = <NotFound /> 
+	      imagesToRender = <NotFound 
+	      	passedState={this.props.passedState}
+	      /> 
 	    }
 
 		return(

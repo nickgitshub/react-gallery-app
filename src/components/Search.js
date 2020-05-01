@@ -1,17 +1,14 @@
-import React, { Component, Fragment} from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Redirect } from 'react-router-dom'
 
 class Search extends Component{
 
 	state = {
-		searchText: '',
-		routeSwitch: false
+		searchText: ''
 	}
 
 	onSearchChange = e => {
 		this.setState({searchText: e.target.value})
-		this.state.routeSwitch = true; 
-		
 	}
 
 	handleSubmit = e => {
@@ -22,20 +19,7 @@ class Search extends Component{
 
 
 	render(){
-
-		//everytime there is a change in the search bar, it redirects the page to the search route
-		let optionalRoute; 
-		if(this.state.routeSwitch){
-			optionalRoute = 
-				<BrowserRouter>
-					<Redirect to="/search" />
-				</BrowserRouter>	
-		}
-
-		this.state.routeSwitch = false; 
-
 		return(
-			<Fragment>
 			<form className="search-form" onSubmit={this.handleSubmit}>
 				<input type="search" 
 					   onChange={this.onSearchChange}
@@ -49,8 +33,6 @@ class Search extends Component{
 				  </svg>
 				</button>
 			</form>
-			{ optionalRoute }
-			</Fragment>
 		)
 	}
 }
