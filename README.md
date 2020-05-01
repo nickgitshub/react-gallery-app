@@ -6,7 +6,7 @@ This project requires a Flickr API in order to use. Apply for a noncommercial AP
 
 After setting up your Flickr API key, create config.js file within the source (src) folder. This file is in .gitignore and will not be pushed to your Github project. The key should be exported like so:
 
-`const apiKey = '//API key should be pasted here'; \n`
+`const apiKey = '//API key should be pasted here';`
 
 `export default apiKey;`
 
